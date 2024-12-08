@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Livres{% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h1>Liste des Livres</h1>
+
+        {# Formulaire de recherche #}
+        <form action="{{ path('app_book_index') }}" method="get" class="mb-4">
+            <div class="input-group">
+                <input type="text" name="search" class="form-control" placeholder="Rechercher un livre ou un auteur..." value="{{ search }}">
+                <button class="btn btn-primary" type="submit">Rechercher</button>
+            </div>
+        </form>
+
+        {# Messages flash #}
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        <a href="{{ path('app_book_new') }}" class="btn btn-success mb-3">Ajouter un nouveau livre</a>
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Titre</th>
+                <th>Auteur</th>
+                <th>Genre</th>
+                <th>Date de publication</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for book in books %}
+                <tr>
+                    <td>{{ book.title }}</td>
+                    <td>{{ book.author.firstName }} {{ book.author.lastName }}</td>
+                    <td>{{ book.genre }}</td>
+                    <td>{{ book.publishedAt ? book.publishedAt|date('Y-m-d') : 'Non définie' }}</td>
+                    <td>
+                        <a href="{{ path('app_book_show', {'id': book.id}) }}" class="btn btn-info btn-sm">Voir</a>
+                        <a href="{{ path('app_book_edit', {'id': book.id}) }}" class="btn btn-primary btn-sm">Modifier</a>
+                        <form method="post" action="{{ path('app_book_delete', {'id': book.id}) }}" style="display: inline-block"
+                              onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce livre ?');">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ book.id) }}">
+                            <button class="btn btn-danger btn-sm">Supprimer</button>
+                        </form>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5">Aucun livre trouvé</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

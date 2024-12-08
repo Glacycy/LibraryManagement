@@ -1,0 +1,52 @@
+{# templates/author/index.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des auteurs{% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h1>Liste des auteurs</h1>
+
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        <a href="{{ path('app_author_new') }}" class="btn btn-primary mb-3">Ajouter un nouvel auteur</a>
+
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Prénom</th>
+                    <th>Nom</th>
+                    <th>Biographie</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for author in authors %}
+                    <tr>
+                        <td>{{ author.firstName }}</td>
+                        <td>{{ author.lastName }}</td>
+                        <td>{{ author.bio|slice(0, 100) }}...</td>
+                        <td>
+                            <a href="{{ path('app_author_show', {'id': author.id}) }}" class="btn btn-info btn-sm">Voir</a>
+                            <a href="{{ path('app_author_edit', {'id': author.id}) }}" class="btn btn-warning btn-sm">Modifier</a>
+                            <form method="post" action="{{ path('app_author_delete', {'id': author.id}) }}" style="display: inline-block" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet auteur ?');">
+                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ author.id) }}">
+                                <button class="btn btn-danger btn-sm">Supprimer</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="4">Aucun auteur trouvé</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

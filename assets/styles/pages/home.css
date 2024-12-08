@@ -1,0 +1,110 @@
+/* Variables globales pour maintenir une cohérence dans les couleurs et l'espacement */
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #3498db;
+    --accent-color: #e74c3c;
+    --text-color: #333333;
+    --light-bg: #ecf0f1;
+    --spacing-unit: 1rem;
+}
+
+/* Style du conteneur principal de la page d'accueil */
+.home-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--spacing-unit);
+    background-color: var(--light-bg);
+    min-height: 80vh;
+}
+
+/* En-tête de la page d'accueil */
+.home-header {
+    text-align: center;
+    padding: calc(var(--spacing-unit) * 2) 0;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 8px;
+    margin-bottom: calc(var(--spacing-unit) * 2);
+}
+
+.home-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-unit);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.home-header p {
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* Grille des sections principales */
+.home-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: calc(var(--spacing-unit) * 2);
+    margin-bottom: calc(var(--spacing-unit) * 2);
+}
+
+/* Cartes pour chaque section */
+.home-card {
+    background-color: white;
+    border-radius: 8px;
+    padding: calc(var(--spacing-unit) * 1.5);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.home-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.home-card h2 {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    margin-bottom: var(--spacing-unit);
+    border-bottom: 2px solid var(--secondary-color);
+    padding-bottom: calc(var(--spacing-unit) * 0.5);
+}
+
+.home-card p {
+    color: var(--text-color);
+    line-height: 1.6;
+    margin-bottom: var(--spacing-unit);
+}
+
+/* Boutons stylisés */
+.home-button {
+    display: inline-block;
+    padding: calc(var(--spacing-unit) * 0.75) calc(var(--spacing-unit) * 1.5);
+    background-color: var(--secondary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    text-align: center;
+    font-weight: bold;
+}
+
+.home-button:hover {
+    background-color: var(--primary-color);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .home-header h1 {
+        font-size: 2rem;
+    }
+
+    .home-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .stat-item {
+        min-width: 150px;
+    }
+}

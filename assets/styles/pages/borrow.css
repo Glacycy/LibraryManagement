@@ -1,0 +1,158 @@
+/* Variables spécifiques pour la section emprunts */
+:root {
+    --borrow-primary: #2980b9;
+    --borrow-secondary: #27ae60;
+    --borrow-warning: #f1c40f;
+    --borrow-danger: #e74c3c;
+    --borrow-bg: #f8f9fa;
+}
+
+/* Conteneur principal des emprunts */
+.borrow-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: var(--borrow-bg);
+}
+
+/* Tableau des emprunts */
+.borrow-table {
+    width: 100%;
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+}
+
+.borrow-table thead {
+    background-color: var(--borrow-primary);
+    color: white;
+}
+
+.borrow-table th,
+.borrow-table td {
+    padding: 1rem;
+    text-align: left;
+}
+
+.borrow-table tbody tr:nth-child(even) {
+    background-color: var(--borrow-bg);
+}
+
+.borrow-table tbody tr:hover {
+    background-color: rgba(41, 128, 185, 0.1);
+}
+
+/* Statut des emprunts */
+.borrow-status {
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: bold;
+    text-align: center;
+    display: inline-block;
+}
+
+.status-active {
+    background-color: var(--borrow-warning);
+    color: #000;
+}
+
+.status-returned {
+    background-color: var(--borrow-secondary);
+    color: white;
+}
+
+.status-late {
+    background-color: var(--borrow-danger);
+    color: white;
+}
+
+/* Formulaire d'emprunt */
+.borrow-form {
+    max-width: 500px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.borrow-form .form-group {
+    margin-bottom: 1.5rem;
+}
+
+.borrow-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--borrow-primary);
+    font-weight: bold;
+}
+
+.borrow-form select,
+.borrow-form input[type="date"] {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+/* Actions d'emprunt */
+.borrow-actions {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: flex-end;
+}
+
+.borrow-btn {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.borrow-btn-return {
+    background-color: var(--borrow-secondary);
+    color: white;
+}
+
+.borrow-btn-delete {
+    background-color: var(--borrow-danger);
+    color: white;
+}
+
+/* Filtres et recherche */
+.borrow-filters {
+    background-color: white;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.borrow-search {
+    flex: 1;
+    min-width: 200px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .borrow-table {
+        display: block;
+        overflow-x: auto;
+    }
+
+    .borrow-filters {
+        flex-direction: column;
+    }
+
+    .borrow-search {
+        width: 100%;
+    }
+}

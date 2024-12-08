@@ -1,0 +1,54 @@
+{# templates/author/show.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Détails de l'auteur{% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h1>{{ author.firstName }} {{ author.lastName }}</h1>
+
+        <div class="card mb-4">
+            <div class="card-body">
+                <h5 class="card-title">Informations de l'auteur</h5>
+                <dl class="row">
+                    <dt class="col-sm-3">Prénom</dt>
+                    <dd class="col-sm-9">{{ author.firstName }}</dd>
+
+                    <dt class="col-sm-3">Nom</dt>
+                    <dd class="col-sm-9">{{ author.lastName }}</dd>
+
+                    <dt class="col-sm-3">Biographie</dt>
+                    <dd class="col-sm-9">{{ author.bio }}</dd>
+                </dl>
+            </div>
+        </div>
+
+        {% if author.books|length > 0 %}
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Livres de l'auteur</h5>
+                    <ul class="list-group list-group-flush">
+                        {% for book in author.books %}
+                            <li class="list-group-item">
+                                {{ book.title }} ({{ book.genre }})
+                                {% if book.publishedAt %}
+                                    - Publié le {{ book.publishedAt|date('d/m/Y') }}
+                                {% endif %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        {% endif %}
+
+        <div class="mt-4">
+            <a href="{{ path('app_author_edit', {'id': author.id}) }}" class="btn btn-warning">Modifier</a>
+            <a href="{{ path('app_author_index') }}" class="btn btn-secondary">Retour à la liste</a>
+
+            <form method="post" action="{{ path('app_author_delete', {'id': author.id}) }}" style="display: inline-block" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet auteur ?');">
+                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ author.id) }}">
+                <button class="btn btn-danger">Supprimer</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

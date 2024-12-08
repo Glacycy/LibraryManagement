@@ -1,0 +1,161 @@
+/* Styles pour la gestion des auteurs */
+
+/* Variables spécifiques pour la section auteurs */
+:root {
+    --author-primary: #34495e;
+    --author-secondary: #2ecc71;
+    --author-accent: #e67e22;
+    --author-text: #2c3e50;
+    --author-bg: #f5f6fa;
+}
+
+/* Conteneur principal de la section auteurs */
+.author-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: var(--author-bg);
+}
+
+/* En-tête de la section auteurs */
+.author-header {
+    background-color: var(--author-primary);
+    color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+/* Grille des auteurs */
+.author-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+/* Carte d'auteur */
+.author-card {
+    background-color: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.author-card:hover {
+    transform: translateY(-5px);
+}
+
+.author-card h3 {
+    color: var(--author-primary);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid var(--author-secondary);
+    padding-bottom: 0.5rem;
+}
+
+/* Bio de l'auteur */
+.author-bio {
+    color: var(--author-text);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    font-style: italic;
+}
+
+/* Liste des livres de l'auteur */
+.author-books {
+    background-color: var(--author-bg);
+    padding: 1rem;
+    border-radius: 4px;
+    margin-top: 1rem;
+}
+
+.author-books h4 {
+    color: var(--author-primary);
+    margin-bottom: 0.5rem;
+}
+
+.author-books ul {
+    list-style: none;
+    padding: 0;
+}
+
+.author-books li {
+    margin-bottom: 0.5rem;
+    padding-left: 1rem;
+    border-left: 3px solid var(--author-secondary);
+}
+
+/* Formulaire d'auteur */
+.author-form {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.author-form .form-group {
+    margin-bottom: 1.5rem;
+}
+
+.author-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--author-primary);
+    font-weight: bold;
+}
+
+.author-form input,
+.author-form textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.author-form textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+/* Boutons d'action */
+.author-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.author-btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.author-btn-primary {
+    background-color: var(--author-secondary);
+    color: white;
+}
+
+.author-btn-danger {
+    background-color: var(--author-accent);
+    color: white;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .author-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .author-card {
+        margin-bottom: 1rem;
+    }
+}

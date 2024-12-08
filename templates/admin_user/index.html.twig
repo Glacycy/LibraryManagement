@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion des utilisateurs{% endblock %}
+
+{% block body %}
+    <h1>Gestion des utilisateurs</h1>
+
+    {% for message in app.flashes('error') %}
+        <div class="alert alert-danger">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Email</th>
+            <th>Rôles</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.name }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.roles|join(', ') }}</td>
+                <td>
+                    {% if user.id != app.user.id %}
+                        <form action="{{ path('admin_users_toggle_role', {'id': user.id}) }}" method="post" style="display: inline">
+                            <button class="btn btn-warning btn-sm" onclick="return confirm('Êtes-vous sûr de vouloir modifier les rôles ?')">
+                                Changer le rôle
+                            </button>
+                        </form>
+                    {% else %}
+                        <button class="btn btn-warning btn-sm" disabled title="Vous ne pouvez pas modifier vos propres droits">
+                            Changer le rôle
+                        </button>
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

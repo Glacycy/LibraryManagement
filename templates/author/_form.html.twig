@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container mt-4">
+        {# Le titre change selon qu'on crée ou modifie un auteur #}
+        <h1>{{ author.id ? 'Modifier l\'auteur' : 'Ajouter un nouvel auteur' }}</h1>
+
+        {# Affichage du formulaire avec le style Bootstrap #}
+        {{ form_start(form, {'attr': {'class': 'needs-validation', 'novalidate': 'novalidate'}}) }}
+        <div class="mb-3">
+            {{ form_label(form.firstName, 'Prénom', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.firstName, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.firstName) }}
+        </div>
+
+        <div class="mb-3">
+            {{ form_label(form.lastName, 'Nom', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.lastName, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.lastName) }}
+        </div>
+
+        <div class="mb-3">
+            {{ form_label(form.bio, 'Biographie', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.bio, {'attr': {'class': 'form-control', 'rows': 5}}) }}
+            {{ form_errors(form.bio) }}
+        </div>
+
+        <button type="submit" class="btn btn-primary">{{ author.id ? 'Modifier' : 'Créer' }}</button>
+        <a href="{{ path('app_author_index') }}" class="btn btn-secondary">Retour à la liste</a>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
